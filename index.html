@@ -87,7 +87,7 @@
     <div class="flex items-center gap-2 mb-4">
       <div class="relative flex-grow">
         <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
-        <input type="text" id="searchInput" oninput="filterDNS()" placeholder="Buscar DNS..." class="w-full bg-cardBg border border-borderClr rounded-xl pl-8 pr-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition" />
+        <input type="text" id="searchInput" oninput="filterDNS()" placeholder="Buscar Servidor..." class="w-full bg-cardBg border border-borderClr rounded-xl pl-8 pr-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition" />
       </div>
       
       <button onclick="checkAllDNS()" id="btnTestAll" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-3.5 py-2 rounded-xl text-xs transition flex items-center gap-1.5 whitespace-nowrap active:scale-95 shadow-sm">
@@ -98,7 +98,7 @@
 
     <!-- LISTA DE CARDS DNS -->
     <div id="dnsList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-      <!-- Cards serão renderizados via Javascript -->
+      <!-- Cards renderizados via JS -->
     </div>
 
     <!-- MENSAGEM VAZIA -->
@@ -220,12 +220,9 @@
         }
 
         card.innerHTML = `
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <h3 class="text-xs font-bold text-white truncate pr-2">${item.name}</h3>
-              ${statusBadge}
-            </div>
-            <p class="text-[11px] text-gray-400 font-mono truncate mb-2" title="${item.url}">${item.url}</p>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-white truncate pr-2">${item.name}</h3>
+            ${statusBadge}
           </div>
 
           <div class="flex items-center justify-end gap-1.5 pt-2 border-t border-borderClr/60">
