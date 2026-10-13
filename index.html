@@ -57,7 +57,7 @@
         </div>
         <div>
           <h1 class="text-base font-bold text-white leading-tight">Monitor de DNS</h1>
-          <p class="text-[11px] text-gray-400">Gerenciador e Status de Servidores</p>
+          <p class="text-[11px] text-gray-400">Atualiza a cada 10 seg</p>
         </div>
       </div>
       
@@ -154,6 +154,13 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       loadDNS();
+      // Dispara o teste inicial automaticamente ao carregar a página
+      checkAllDNS();
+      
+      // Configura o timer para rodar a cada 10 segundos (10000 ms)
+      setInterval(() => {
+        checkAllDNS();
+      }, 10000);
     });
 
     function loadDNS() {
@@ -240,8 +247,8 @@
     async function checkAllDNS() {
       const btn = document.getElementById('btnTestAll');
       const icon = document.getElementById('iconTestAll');
-      btn.disabled = true;
-      icon.classList.add('fa-spin');
+      if (btn) btn.disabled = true;
+      if (icon) icon.classList.add('fa-spin');
 
       dnsList.forEach(item => item.status = 'testing');
       renderDNS();
@@ -251,8 +258,8 @@
       saveToLocalStorage();
       renderDNS();
 
-      btn.disabled = false;
-      icon.classList.remove('fa-spin');
+      if (btn) btn.disabled = false;
+      if (icon) icon.classList.remove('fa-spin');
     }
 
     function pingServer(dnsItem) {
@@ -327,6 +334,7 @@
       saveToLocalStorage();
       renderDNS();
       closeModal();
+      checkAllDNS();
     }
 
     function deleteDNS(id) {
